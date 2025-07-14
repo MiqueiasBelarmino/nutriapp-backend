@@ -17,6 +17,7 @@ export class ConsultationsController {
 
   @Post()
   create(@Body() data: CreateConsultationDto) {
+    data.date = new Date(data.date);
     return this.consultationsService.create(data);
   }
 

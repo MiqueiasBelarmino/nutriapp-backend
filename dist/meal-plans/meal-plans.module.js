@@ -10,12 +10,13 @@ exports.MealPlansModule = void 0;
 const common_1 = require("@nestjs/common");
 const meal_plans_service_1 = require("./meal-plans.service");
 const meal_plans_controller_1 = require("./meal-plans.controller");
+const prisma_service_1 = require("../prisma/prisma.service");
 let MealPlansModule = class MealPlansModule {
 };
 exports.MealPlansModule = MealPlansModule;
 exports.MealPlansModule = MealPlansModule = __decorate([
     (0, common_1.Module)({
-        providers: [meal_plans_service_1.MealPlansService],
+        providers: [meal_plans_service_1.MealPlansService, prisma_service_1.PrismaService],
         controllers: [meal_plans_controller_1.MealPlansController]
     })
 ], MealPlansModule);

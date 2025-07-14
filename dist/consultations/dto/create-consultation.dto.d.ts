@@ -1,6 +1,6 @@
 export declare class CreateConsultationDto {
     patientId: string;
-    date: string;
+    date: Date;
     weight: number;
     triceps: number;
     subscapular: number;

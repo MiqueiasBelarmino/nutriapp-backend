@@ -22,6 +22,7 @@ let ConsultationsController = class ConsultationsController {
         this.consultationsService = consultationsService;
     }
     create(data) {
+        data.date = new Date(data.date);
         return this.consultationsService.create(data);
     }
     findAll() {
