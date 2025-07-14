@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  senha     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  patients  Patient[]
+}
+
+model Patient {
+  id            String         @id @default(uuid())
+  name          String
+  gender        String
+  birthDate     DateTime
+  weight        Float
+  height        Float
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  consultations Consultation[]
+  mealPlans     MealPlan[]
+}
+
+model Consultation {
+  id          String   @id @default(uuid())
+  patientId   String
+  date        DateTime
+  weight      Float
+  triceps     Float
+  subscapular Float
+  suprailiac  Float
+  abdominal   Float
+  waistCirc   Float
+  abdomenCirc Float
+  fatFormula  String // "faulkner" | "pollock" | "jackson"
+  fatPercent  Float
+  leanMass    Float
+  fatMass     Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  patient     Patient  @relation(fields: [patientId], references: [id])
+}
+
+model MealPlan {
+  id        String   @id @default(uuid())
+  patientId String
+  date      DateTime
+  content   String // HTML ou JSON estruturado
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  patient   Patient  @relation(fields: [patientId], references: [id])
+}
