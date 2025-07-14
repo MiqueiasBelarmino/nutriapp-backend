@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -40,8 +39,8 @@ model Patient {
   birthDate     DateTime
   weight        Float
   height        Float
-  userId        String
-  user          User           @relation(fields: [userId], references: [id])
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id])
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   consultations Consultation[]
