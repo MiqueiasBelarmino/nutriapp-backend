@@ -8,7 +8,6 @@ import {
   Delete,
 } from '@nestjs/common';
 import { PatientsService } from './patients.service';
-import { Prisma } from '@prisma/client';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 
@@ -17,9 +16,9 @@ export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
   @Post()
-  create(@Body() data: CreatePatientDto) {
+  async create(@Body() data: CreatePatientDto) {
     data.birthDate = new Date(data.birthDate);
-    return this.patientsService.create(data);
+    return await this.patientsService.create(data);
   }
 
   @Get()
@@ -40,5 +39,10 @@ export class PatientsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.patientsService.remove(id);
+  }
+
+  @Get(':id/consultations')
+  findConsultations(@Param('id') id: string) {
+    return this.patientsService.findConsultations(id);
   }
 }

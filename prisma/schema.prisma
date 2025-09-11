@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -13,66 +14,67 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  email     String   @unique
-  senha     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model User {
   id        String    @id @default(uuid())
   email     String    @unique
   password  String
   name      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
   patients  Patient[]
+
+  @@map("users")
 }
 
 model Patient {
   id            String         @id @default(uuid())
   name          String
   gender        String
-  birthDate     DateTime
+  birthDate     DateTime     @map("birth_date")
   weight        Float
   height        Float
   userId        String?
-  user          User?           @relation(fields: [userId], references: [id])
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  user          User?          @relation(fields: [userId], references: [id])
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  email         String?        @unique
+  phone         String?
   consultations Consultation[]
   mealPlans     MealPlan[]
+
+  @@map("patients")
 }
 
 model Consultation {
   id          String   @id @default(uuid())
-  patientId   String
+  patientId   String   @map("patient_id")
   date        DateTime
   weight      Float
   triceps     Float
   subscapular Float
   suprailiac  Float
   abdominal   Float
-  waistCirc   Float
-  abdomenCirc Float
-  fatFormula  String // "faulkner" | "pollock" | "jackson"
-  fatPercent  Float
-  leanMass    Float
-  fatMass     Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  waistCirc   Float @map("waist_circ")
+  abdomenCirc Float @map("abdomen_circ")
+  fatFormula  String @map("fat_formula")// "faulkner" | "pollock" | "jackson"
+  fatPercent  Float @map("fat_percent")
+  leanMass    Float @map("lean_mass")
+  fatMass     Float @map("fat_mass")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
   patient     Patient  @relation(fields: [patientId], references: [id])
+
+  @@map("consultations")
 }
 
 model MealPlan {
   id        String   @id @default(uuid())
-  patientId String
+  patientId String   @map("patient_id")
   date      DateTime
   content   String // HTML ou JSON estruturado
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   patient   Patient  @relation(fields: [patientId], references: [id])
+
+  @@map("meal_plans")
 }

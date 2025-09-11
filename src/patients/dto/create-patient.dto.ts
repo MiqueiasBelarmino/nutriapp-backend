@@ -5,4 +5,6 @@ export class CreatePatientDto {
   weight: number;
   height: number;
   userId?: string;
+  email?: string;
+  phone?: string;
 }
