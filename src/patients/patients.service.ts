@@ -19,7 +19,7 @@ export class PatientsService {
         throw new ConflictException('Email já cadastrado');
       }
 
-      throw new InternalServerErrorException('Erro desconhecido');
+      throw new InternalServerErrorException(error.message);
     }
   }
 
@@ -37,6 +37,9 @@ export class PatientsService {
   }
 
   update(id: string, data: UpdatePatientDto) {
+    if (data.birthDate) {
+      data.birthDate = new Date(data.birthDate);
+    }
     return this.prisma.patient.update({
       where: { id },
       data,

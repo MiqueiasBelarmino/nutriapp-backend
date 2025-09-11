@@ -30,7 +30,7 @@ model Patient {
   id            String         @id @default(uuid())
   name          String
   gender        String
-  birthDate     DateTime     @map("birth_date")
+  birthDate     DateTime @db.Date @map("birth_date")
   weight        Float
   height        Float
   userId        String?

@@ -10,7 +10,7 @@ export class ConsultationsService {
     async create(data: CreateConsultationDto) {
         const { weight, fatFormula, ...measures } = data;
 
-        const fatPercent = this.calculateFatPercent(fatFormula, measures);
+        const fatPercent = data.fatPercent;//this.calculateFatPercent(fatFormula, measures);
         const fatMass = +(weight * (fatPercent / 100)).toFixed(2);
         const leanMass = +(weight - fatMass).toFixed(2);
 
@@ -56,14 +56,14 @@ export class ConsultationsService {
         const { triceps, subscapular, suprailiac, abdominal } = measures;
 
         switch (formula.toLowerCase()) {
-            case 'faulkner':
+            case 'faulkner4d':
                 return +(0.153 * (triceps + subscapular + suprailiac + abdominal) + 5.783).toFixed(2);
-            case 'pollock':
+            case 'pollock3d':
                 // Fórmula genérica para 3 dobras (exemplo simplificado)
                 return +((triceps + abdominal + suprailiac) / 3).toFixed(2);
-            case 'jackson':
+            case 'jackson3d':
                 // Simulação (substituir por fórmula real se desejar)
-                return +((triceps + subscapular + suprailiac + abdominal) * 0.14 + 4.5).toFixed(2);
+                return +((triceps + subscapular + suprailiac ) * 0.14 + 4.5).toFixed(2);
             default:
                 throw new Error('Fórmula inválida');
         }
