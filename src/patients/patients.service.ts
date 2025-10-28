@@ -68,6 +68,6 @@ export class PatientsService {
   findConsultations(id: string) {
     return this.prisma.patient.findUnique({
       where: { id },
-    }).consultations();
+    }).Consultations();
   }
 }
