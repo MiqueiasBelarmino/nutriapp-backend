@@ -7,8 +7,43 @@ import { UpdateMealPlanDto } from './dto/update-meal-plan.dto';
 export class MealPlansService {
     constructor(private prisma: PrismaService) { }
 
-    create(data: CreateMealPlanDto) {
-        return this.prisma.mealPlan.create({ data });
+    async create(data: CreateMealPlanDto) {
+        return this.prisma.mealPlan.create({
+            data: {
+                patientId: data.patientId,
+                date: data.date,
+                Meal: {
+                    create: data.content.map((meal, index) => ({
+                        name: meal.name,
+                        order: index + 1,
+                        items: {
+                            create: meal.items.map((item) => ({
+                                foodId: item.id,
+                                quantity: item.quantity,
+                                observation: item.observation,
+                                substitutes: {
+                                    create: item.substitutes?.map((sub) => ({
+                                        foodId: sub.id,
+                                        quantity: sub.quantity,
+                                    })) ?? [],
+                                },
+                            })),
+                        },
+                    })),
+                },
+            },
+            include: {
+                Meal: {
+                    include: {
+                        items: {
+                            include: {
+                                substitutes: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
     }
 
     findAll() {
@@ -25,13 +60,72 @@ export class MealPlansService {
     }
 
     findOne(id: string) {
-        return this.prisma.mealPlan.findUnique({ where: { id } });
+        return this.prisma.mealPlan.findUnique({
+            where: { id },
+            include: {
+                patient: true, // retorna os dados do paciente
+                UserCreator: true, // exemplo: nutricionista responsável
+                Meal: {
+                    include: {
+                        items: {
+                            include: {
+                                substitutes: true
+                            }
+                        }
+
+                    },
+
+                },
+            },
+        });
     }
 
-    update(id: string, data: UpdateMealPlanDto) {
+    async update(id: string, data: UpdateMealPlanDto) {
+        const { patientId, date, content } = data;
+
+        // Monta apenas os campos realmente existentes no model
+        const updateData: any = {};
+
+        if (patientId) updateData.patientId = patientId;
+        if (date) updateData.date = date;
+
+        // Atualização de refeições (caso tenha vindo no payload)
+        if (content) {
+            updateData.meals = {
+                deleteMany: {}, // limpa todas as refeições atuais
+                create: content.map((meal, index) => ({
+                    name: meal.name,
+                    order: index + 1,
+                    items: {
+                        create: meal.items.map((item) => ({
+                            foodId: item.id,
+                            quantity: item.quantity,
+                            observation: item.observation,
+                            substitutes: {
+                                create:
+                                    item.substitutes?.map((sub) => ({
+                                        foodId: sub.id,
+                                        quantity: sub.quantity,
+                                    })) ?? [],
+                            },
+                        })),
+                    },
+                })),
+            };
+        }
+
         return this.prisma.mealPlan.update({
             where: { id },
-            data,
+            data: updateData,
+            include: {
+                Meal: {
+                    include: {
+                        items: {
+                            include: { substitutes: true },
+                        },
+                    },
+                },
+            },
         });
     }
 

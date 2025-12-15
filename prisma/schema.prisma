@@ -105,9 +105,13 @@ model Meal {
 model MealItem {
   id       String  @id @default(uuid())
   mealId   String  @map("meal_id")
-  foodName String  @map("food_name")
+
+  foodId   String
+  food     Food    @relation(fields: [foodId], references: [id])
+
   quantity String?
   notes    String?
+  observation String?
 
   meal        Meal             @relation(fields: [mealId], references: [id])
   substitutes MealSubstitute[]
@@ -118,7 +122,10 @@ model MealItem {
 model MealSubstitute {
   id       String  @id @default(uuid())
   itemId   String  @map("item_id")
-  foodName String  @map("food_name")
+
+  foodId   String
+  food     Food    @relation(fields: [foodId], references: [id])
+
   quantity String?
   notes    String?
 
@@ -126,3 +133,29 @@ model MealSubstitute {
 
   @@map("meal_substitutes")
 }
+
+model Food {
+  id           String   @id @default(uuid())
+  name         String
+
+  servingSize  Float  @map("serving_size")
+  servingUnit  String @map("serving_unit")
+  
+  calories     Float?
+  protein      Float?
+  carbs        Float?
+  fats         Float?
+  fiber        Float?
+  sodium       Float?
+  category     String?
+
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  MealItems        MealItem[]
+  MealSubstitutes  MealSubstitute[]
+
+  @@map("foods")
+}
+
+
