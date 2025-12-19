@@ -21,6 +21,11 @@ export class MealPlansController {
         return this.mealPlansService.create(data);
     }
 
+    @Post('suggestion')
+    generateSuggestion(@Body() body: { patientId: string }) {
+        return this.mealPlansService.generateSuggestion(body.patientId);
+    }
+
     @Get()
     findAll() {
         return this.mealPlansService.findAll();

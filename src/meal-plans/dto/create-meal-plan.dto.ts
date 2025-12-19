@@ -2,13 +2,14 @@
 import { z } from 'zod';
 
 const MealSubstituteSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   quantity: z.string().optional(),
+  observation: z.string().optional(),
 });
 
 const MealItemSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   quantity: z.string().optional(),
   observation: z.string().optional(),
@@ -16,7 +17,7 @@ const MealItemSchema = z.object({
 });
 
 const MealSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   items: z.array(MealItemSchema),
 });

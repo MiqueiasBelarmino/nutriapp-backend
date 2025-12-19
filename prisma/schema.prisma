@@ -128,6 +128,7 @@ model MealSubstitute {
 
   quantity String?
   notes    String?
+  observation String?
 
   item MealItem @relation(fields: [itemId], references: [id])
 
@@ -138,8 +139,10 @@ model Food {
   id           String   @id @default(uuid())
   name         String
 
-  servingSize  Float  @map("serving_size")
-  servingUnit  String @map("serving_unit")
+  servingQuantity    Float    @map("serving_quantity")
+  servingUnit        String   @map("serving_unit")
+  equivalentQuantity Float?   @map("equivalent_quantity")
+  equivalentUnit     String?  @map("equivalent_unit")
   
   calories     Float?
   protein      Float?

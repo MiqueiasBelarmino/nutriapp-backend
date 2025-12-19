@@ -3,8 +3,10 @@ import { z } from "zod";
 export const CreateFoodSchema = z.object({
   name: z.string().min(1, "Nome é obrigatório"),
 
-  servingSize: z.coerce.number(),
+  servingQuantity: z.coerce.number(),
   servingUnit: z.string(),
+  equivalentQuantity: z.coerce.number().optional(),
+  equivalentUnit: z.string().optional(),
   calories: z.coerce.number().optional(),
   protein: z.coerce.number().optional(),
   carbs: z.coerce.number().optional(),
