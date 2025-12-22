@@ -84,7 +84,7 @@ CREATE TABLE "public"."meal_plans" (
     "id" TEXT NOT NULL,
     "patient_id" TEXT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "content" TEXT NOT NULL,
+    "content" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 

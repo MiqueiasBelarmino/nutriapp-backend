@@ -15,13 +15,16 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  password  String
-  name      String
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  patients  Patient[]
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String
+  name          String
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  Patients      Patient[]      @relation("CreatedPatients")
+  PatientUsers  Patient[]      @relation("patientUser")
+  Consultations Consultation[]
+  MealPlans     MealPlan[]
 
   @@map("users")
 }
@@ -30,17 +33,19 @@ model Patient {
   id            String         @id @default(uuid())
   name          String
   gender        String
-  birthDate     DateTime @db.Date @map("birth_date")
+  birthDate     DateTime       @map("birth_date") @db.Date
   weight        Float
   height        Float
   userId        String?
-  user          User?          @relation(fields: [userId], references: [id])
+  user          User?          @relation("patientUser", fields: [userId], references: [id])
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @updatedAt @map("updated_at")
   email         String?        @unique
   phone         String?
-  consultations Consultation[]
-  mealPlans     MealPlan[]
+  createdBy     String?        @map("created_by")
+  UserCreator   User?          @relation("CreatedPatients", fields: [createdBy], references: [id])
+  Consultations Consultation[]
+  MealPlans     MealPlan[]
 
   @@map("patients")
 }
@@ -54,27 +59,106 @@ model Consultation {
   subscapular Float
   suprailiac  Float
   abdominal   Float
-  waistCirc   Float @map("waist_circ")
-  abdomenCirc Float @map("abdomen_circ")
-  fatFormula  String @map("fat_formula")// "faulkner" | "pollock" | "jackson"
-  fatPercent  Float @map("fat_percent")
-  leanMass    Float @map("lean_mass")
-  fatMass     Float @map("fat_mass")
+  waistCirc   Float    @map("waist_circ")
+  abdomenCirc Float    @map("abdomen_circ")
+  fatFormula  String   @map("fat_formula")
+  fatPercent  Float    @map("fat_percent")
+  leanMass    Float    @map("lean_mass")
+  fatMass     Float    @map("fat_mass")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  createdBy   String?  @map("created_by")
+  UserCreator User?    @relation(fields: [createdBy], references: [id])
   patient     Patient  @relation(fields: [patientId], references: [id])
 
   @@map("consultations")
 }
 
 model MealPlan {
-  id        String   @id @default(uuid())
-  patientId String   @map("patient_id")
-  date      DateTime
-  content   String // HTML ou JSON estruturado
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  patient   Patient  @relation(fields: [patientId], references: [id])
+  id          String   @id @default(uuid())
+  patientId   String   @map("patient_id")
+  date        DateTime
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdBy   String?  @map("created_by")
+  content   String?
+
+  patient     Patient  @relation(fields: [patientId], references: [id])
+  UserCreator User?    @relation(fields: [createdBy], references: [id])
+  Meal        Meal[]
 
   @@map("meal_plans")
 }
+
+model Meal {
+  id         String @id @default(uuid())
+  mealPlanId String @map("meal_plan_id")
+  name       String
+  order      Int?
+
+  mealPlan MealPlan   @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+  items    MealItem[]
+
+  @@map("meals")
+}
+
+model MealItem {
+  id       String  @id @default(uuid())
+  mealId   String  @map("meal_id")
+
+  foodId   String
+  food     Food    @relation(fields: [foodId], references: [id])
+
+  quantity String?
+  notes    String?
+  observation String?
+
+  meal        Meal             @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  substitutes MealSubstitute[]
+
+  @@map("meal_items")
+}
+
+model MealSubstitute {
+  id       String  @id @default(uuid())
+  itemId   String  @map("item_id")
+
+  foodId   String
+  food     Food    @relation(fields: [foodId], references: [id])
+
+  quantity String?
+  notes    String?
+  observation String?
+
+  item MealItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("meal_substitutes")
+}
+
+model Food {
+  id           String   @id @default(uuid())
+  name         String
+
+  servingQuantity    Float    @map("serving_quantity")
+  servingUnit        String   @map("serving_unit")
+  equivalentQuantity Float?   @map("equivalent_quantity")
+  equivalentUnit     String?  @map("equivalent_unit")
+  
+  calories     Float?
+  protein      Float?
+  carbs        Float?
+  fats         Float?
+  fiber        Float?
+  sodium       Float?
+  category     String?
+
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  MealItems        MealItem[]
+  MealSubstitutes  MealSubstitute[]
+
+  @@map("foods")
+}
+
+

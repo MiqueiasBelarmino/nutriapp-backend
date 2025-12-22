@@ -29,10 +29,13 @@
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^6.14.0",
     "bcrypt": "^6.0.0",
+    "csv-parser": "^3.2.0",
+    "openai": "^6.10.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -80,5 +83,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

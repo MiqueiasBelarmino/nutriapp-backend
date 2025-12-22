@@ -1,0 +1,232 @@
+requisição vindas do frontend:
+curl ^"http://localhost:3001/meal-plans/f8c2ddc6-4c02-4d2d-ab30-5fdb2c3ea6ec^" ^
+  -X ^"PUT^" ^
+  -H ^"Accept: application/json, text/plain, */*^" ^
+  -H ^"Accept-Language: en-US,en;q=0.9,pt;q=0.8^" ^
+  -H ^"Connection: keep-alive^" ^
+  -H ^"Content-Type: application/json^" ^
+  -H ^"Origin: http://localhost:5173^" ^
+  -H ^"Referer: http://localhost:5173/^" ^
+  -H ^"Sec-Fetch-Dest: empty^" ^
+  -H ^"Sec-Fetch-Mode: cors^" ^
+  -H ^"Sec-Fetch-Site: same-site^" ^
+  -H ^"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36^" ^
+  -H ^"sec-ch-ua: ^\^"Google Chrome^\^";v=^\^"143^\^", ^\^"Chromium^\^";v=^\^"143^\^", ^\^"Not A(Brand^\^";v=^\^"24^\^"^" ^
+  -H ^"sec-ch-ua-mobile: ?0^" ^
+  -H ^"sec-ch-ua-platform: ^\^"Windows^\^"^" ^
+  --data-raw ^"^{^\^"patientId^\^":^\^"ee16a850-0da9-4bd3-8a1c-dd38cefd2298^\^",^\^"date^\^":^\^"2025-12-18T00:00:00.000Z^\^",^\^"content^\^":^[^{^\^"name^\^":^\^"Caf^  da Manh^ ^\^",^\^"items^\^":^[^{^\^"id^\^":^\^"ce7413c8-ba41-4a1d-8483-dab79acdd56a^\^",^\^"name^\^":^\^"P^ o Integral^\^",^\^"quantity^\^":^\^"3 fatias^\^",^\^"observation^\^":^\^"Pode ser tostado.^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"04c6b669-6346-4192-93d4-ce8f63376678^\^",^\^"name^\^":^\^"Ovo cozido^\^",^\^"quantity^\^":^\^"2 unidades^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"ad59b446-9992-4ff6-8a01-57ec135f2ac4^\^",^\^"name^\^":^\^"Iogurte natural^\^",^\^"quantity^\^":^\^"150ml^\^",^\^"observation^\^":^\^"Misturar com caf^  se preferir.^\^",^\^"substitutes^\^":^[^]^}^]^},^{^\^"name^\^":^\^"Lanche da Manh^ ^\^",^\^"items^\^":^[^{^\^"id^\^":^\^"131dee45-91bd-4d3a-ad4a-4edc06cfdc5b^\^",^\^"name^\^":^\^"Ma^ ^  com casca^\^",^\^"quantity^\^":^\^"1 unidade^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^}^]^},^{^\^"name^\^":^\^"Almo^ o^\^",^\^"items^\^":^[^{^\^"id^\^":^\^"8d8df7a9-a805-47b5-ae8c-0a72295e3c72^\^",^\^"name^\^":^\^"Arroz integral cozido^\^",^\^"quantity^\^":^\^"3 colheres de sopa^\^",^\^"observation^\^":^\^"N^ O UTILIZAR AZEITE; UTILIZE LIM^ O.^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"d1eb58b1-cef2-4e62-8c32-d3a120a0e6a1^\^",^\^"name^\^":^\^"Feij^ o Preto cozido^\^",^\^"quantity^\^":^\^"1 concha pequena^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"5f1e3115-6d0b-49d8-99de-bf68dbaa16b5^\^",^\^"name^\^":^\^"Peixe grelhado (ex: Til^ pia)^\^",^\^"quantity^\^":^\^"100g^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"8fceea7e-66e2-40a9-88d3-5f817b3ba282^\^",^\^"name^\^":^\^"Salada de folhas verdes^\^",^\^"quantity^\^":^\^"^  vontade^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"234a0e0b-c825-4fec-8000-cb4fca38ede1^\^",^\^"name^\^":^\^"Br^ colis cozidos^\^",^\^"quantity^\^":^\^"150g^\^",^\^"observation^\^":^\^"Sem azeite.^\^",^\^"substitutes^\^":^[^]^}^]^},^{^\^"name^\^":^\^"Lanche da Tarde^\^",^\^"items^\^":^[^{^\^"id^\^":^\^"6501c8c3-20a3-4569-b7dd-3a5787aeecd4^\^",^\^"name^\^":^\^"Banana prata^\^",^\^"quantity^\^":^\^"1 unidade^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"7f57aa2f-274d-4dc0-ab4c-54d580e5fa4c^\^",^\^"name^\^":^\^"Uva^\^",^\^"quantity^\^":^\^"100g^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^}^]^},^{^\^"name^\^":^\^"Jantar^\^",^\^"items^\^":^[^{^\^"id^\^":^\^"cf0b8cac-30d7-4f10-a940-878ea099f918^\^",^\^"name^\^":^\^"Quinoa cozida^\^",^\^"quantity^\^":^\^"3 colheres de sopa^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"227d776b-ae5d-40dc-87d6-4198e9e591ba^\^",^\^"name^\^":^\^"Carne bovina magra grelhada^\^",^\^"quantity^\^":^\^"100g^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"ba0d5515-f582-4f9f-ac9b-d0c2461fb27e^\^",^\^"name^\^":^\^"Salada de cenoura ralada^\^",^\^"quantity^\^":^\^"^  vontade^\^",^\^"observation^\^":^\^"^\^",^\^"substitutes^\^":^[^]^},^{^\^"id^\^":^\^"2a26da47-09ec-42eb-9a64-be0185068e38^\^",^\^"name^\^":^\^"Seleta de legumes cozidos^\^",^\^"quantity^\^":^\^"150g^\^",^\^"observation^\^":^\^"Sem azeite.^\^",^\^"substitutes^\^":^[^]^}^]^}^],^\^"updatedAt^\^":^\^"2025-12-19T00:31:15.921Z^\^"^}^"
+
+  
+
+erro no backend:
+dationError:
+Invalid `this.prisma.mealPlan.update()` invocation in
+C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\src\meal-plans\meal-plans.service.ts:187:37
+
+  184     };
+  185 }
+  186
+→ 187 return this.prisma.mealPlan.update({
+        where: {
+          id: "f8c2ddc6-4c02-4d2d-ab30-5fdb2c3ea6ec"
+        },
+        data: {
+          patientId: "ee16a850-0da9-4bd3-8a1c-dd38cefd2298",
+          ~~~~~~~~~
+          date: "2025-12-18T00:00:00.000Z",
+          meals: {
+            deleteMany: {},
+            create: [
+              {
+                name: "Café da Manhã",
+                order: 1,
+                items: {
+                  create: [
+                    {
+                      foodId: "ce7413c8-ba41-4a1d-8483-dab79acdd56a",
+                      quantity: "3 fatias",
+                      observation: "Pode ser tostado.",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "04c6b669-6346-4192-93d4-ce8f63376678",
+                      quantity: "2 unidades",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "ad59b446-9992-4ff6-8a01-57ec135f2ac4",
+                      quantity: "150ml",
+                      observation: "Misturar com café se preferir.",
+                      substitutes: {
+                        create: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                name: "Lanche da Manhã",
+                order: 2,
+                items: {
+                  create: [
+                    {
+                      foodId: "131dee45-91bd-4d3a-ad4a-4edc06cfdc5b",
+                      quantity: "1 unidade",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                name: "Almoço",
+                order: 3,
+                items: {
+                  create: [
+                    {
+                      foodId: "8d8df7a9-a805-47b5-ae8c-0a72295e3c72",
+                      quantity: "3 colheres de sopa",
+                      observation: "NÃO UTILIZAR AZEITE; UTILIZE LIMÃO.",        
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "d1eb58b1-cef2-4e62-8c32-d3a120a0e6a1",
+                      quantity: "1 concha pequena",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "5f1e3115-6d0b-49d8-99de-bf68dbaa16b5",
+                      quantity: "100g",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "8fceea7e-66e2-40a9-88d3-5f817b3ba282",
+                      quantity: "À vontade",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "234a0e0b-c825-4fec-8000-cb4fca38ede1",
+                      quantity: "150g",
+                      observation: "Sem azeite.",
+                      substitutes: {
+                        create: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                name: "Lanche da Tarde",
+                order: 4,
+                items: {
+                  create: [
+                    {
+                      foodId: "6501c8c3-20a3-4569-b7dd-3a5787aeecd4",
+                      quantity: "1 unidade",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "7f57aa2f-274d-4dc0-ab4c-54d580e5fa4c",
+                      quantity: "100g",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                name: "Jantar",
+                order: 5,
+                items: {
+                  create: [
+                    {
+                      foodId: "cf0b8cac-30d7-4f10-a940-878ea099f918",
+                      quantity: "3 colheres de sopa",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "227d776b-ae5d-40dc-87d6-4198e9e591ba",
+                      quantity: "100g",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "ba0d5515-f582-4f9f-ac9b-d0c2461fb27e",
+                      quantity: "À vontade",
+                      observation: "",
+                      substitutes: {
+                        create: []
+                      }
+                    },
+                    {
+                      foodId: "2a26da47-09ec-42eb-9a64-be0185068e38",
+                      quantity: "150g",
+                      observation: "Sem azeite.",
+                      substitutes: {
+                        create: []
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+      ?   id?: String | StringFieldUpdateOperationsInput,
+      ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+      ?   content?: String | NullableStringFieldUpdateOperationsInput | Null,    
+      ?   patient?: PatientUpdateOneRequiredWithoutMealPlansNestedInput,
+      ?   UserCreator?: UserUpdateOneWithoutMealPlansNestedInput,
+      ?   Meal?: MealUpdateManyWithoutMealPlanNestedInput
+        },
+        include: {
+          Meal: {
+            include: {
+              items: {
+                include: {
+                  substitutes: true
+                }
+              }
+            }
+          }
+        }
+      })
+
+Unknown argument `patientId`. Did you mean `patient`? Available options are marked with ?.
+    at throwValidationException (C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:45:9)
+    at ei.handleRequestError (C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:202:7)
+    at ei.handleAndLogRequestError (C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)  
+    at ei.request (C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at async a (C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:833:24)
+    at async C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\Users\Miquéias\Contratos\Gabriel Amorim\projeto\backend\node_modules\@nestjs\core\router\router-proxy.js:9:17 {
+  clientVersion: '6.14.0'
+}
