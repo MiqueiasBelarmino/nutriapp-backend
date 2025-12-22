@@ -356,19 +356,30 @@ export class MealPlansService {
             },
         })
 
+        // Buscar o último peso registrado na última consulta
+        const lastConsultation = await this.prisma.consultation.findFirst({
+            where: { patientId },
+            orderBy: { date: 'desc' },
+        });
+
+        const currentWeight = lastConsultation?.weight || patient.weight;
+
 
         const prompt = `
-      Você é um nutricionista experiente. Crie um novo plano alimentar para o paciente abaixo com base em seus dados e nos seus 2 últimos planos alimentares.
-      Mantenha o estilo e preferências, mas varie um pouco as opções para não ficar monótono.
+      Você é um nutricionista experiente. Crie um NOVO plano alimentar para o paciente abaixo.
+      
+      IMPORTANTE: Atualmente você está repetindo muito os planos anteriores. O objetivo é criar um plano INÉDITO e VARIADO. 
+      Use os planos anteriores apenas como referência de preferências, horários e volume, mas NÃO repita as mesmas combinações de alimentos.
+      Evite a monotonia. Se o paciente comeu arroz integral no último plano, sugira batata doce, macarrão integral ou mandioquinha agora, por exemplo.
       
       Dados do Paciente:
       Nome: ${patient.name}
       Gênero: ${patient.gender}
       Idade: ${new Date().getFullYear() - patient.birthDate.getFullYear()} anos
-      Peso: ${patient.weight}kg
+      Peso Atual (Última Consulta): ${currentWeight}kg
       Altura: ${patient.height}cm
       
-      Últimos 2 Planos Alimentares:
+      Últimos 2 Planos Alimentares (PARA REFERÊNCIA DE PREFERÊNCIAS, NÃO COPIAR):
       ${JSON.stringify(lastMealPlans, null, 2)}
       
       Retorne APENAS um JSON com a estrutura sugerida para o novo plano, contendo uma lista de refeições (meals), onde cada refeição tem um nome (name) e uma lista de itens (items).

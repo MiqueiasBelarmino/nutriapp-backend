@@ -96,7 +96,7 @@ model Meal {
   name       String
   order      Int?
 
-  mealPlan MealPlan   @relation(fields: [mealPlanId], references: [id])
+  mealPlan MealPlan   @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
   items    MealItem[]
 
   @@map("meals")
@@ -113,7 +113,7 @@ model MealItem {
   notes    String?
   observation String?
 
-  meal        Meal             @relation(fields: [mealId], references: [id])
+  meal        Meal             @relation(fields: [mealId], references: [id], onDelete: Cascade)
   substitutes MealSubstitute[]
 
   @@map("meal_items")
@@ -130,7 +130,7 @@ model MealSubstitute {
   notes    String?
   observation String?
 
-  item MealItem @relation(fields: [itemId], references: [id])
+  item MealItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
 
   @@map("meal_substitutes")
 }
