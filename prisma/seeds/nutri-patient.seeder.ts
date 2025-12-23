@@ -1,8 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
-export async function seedNutriAndPatient() {
+export async function seedNutriAndPatient(prisma: PrismaClient) {
   console.log('Iniciando criação de Nutricionista e Paciente...');
 
   const passwordHash = "$2b$10$UnCSRQzLM85HzgZDkmZ98OXB7pgO3vikFT1a6jB72B2Tv40ks7t1K";

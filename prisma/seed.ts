@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Start seeding...');
 
-  const { nutritionistId, patientId } = await seedNutriAndPatient();
+  const { nutritionistId, patientId } = await seedNutriAndPatient(prisma);
   await clearFoodsTable(prisma);
   await seedFoods(prisma);
   await seedFoodsTaco(prisma);
