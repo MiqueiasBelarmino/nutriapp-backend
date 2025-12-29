@@ -5,9 +5,18 @@ import { PrismaClient } from '@prisma/client';
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   async onModuleInit() {
     const databaseUrl = process.env.DATABASE_URL;
-    const isInternal = databaseUrl?.includes('internal');
+    let dbHost = 'Unknown';
+    try {
+      if (databaseUrl) {
+        // Mask credentials but show host
+        const url = new URL(databaseUrl);
+        dbHost = url.hostname;
+      }
+    } catch {
+      // ignore invalid url
+    }
     
-    console.log(`📡 Attempting to connect to database... (Internal URL: ${isInternal ? 'Yes' : 'No'})`);
+    console.log(`📡 Attempting to connect to database... Host: ${dbHost}`);
 
     try {
       await this.$connect();
